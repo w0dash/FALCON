@@ -1,0 +1,7 @@
+﻿#include "Savegame.h"
+
+Savegame* CreateSavegame()
+{
+	Savegame* save = new Savegame { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
+	return save;
+}
