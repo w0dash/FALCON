@@ -11,7 +11,6 @@
 #include "secrets/WPA.h"
 #include "WifiCommands.h"
 
-
 byte paramA, paramB, paramC;
 
 State state = PROGRAM;
@@ -34,7 +33,6 @@ String display_string = "";
 String last_display_string = "";
 
 bool up = false, down = false, ok = false;
-
 
 //U8G2_ST7920_128X64_1_SW_SPI u8g2(U8G2_R0, D5, D6, D7);
 //LiquidCrystal lcd(D2, D3, D4, D5, D6, D7, 8);
