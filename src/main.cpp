@@ -9,6 +9,7 @@
 #include "ProgramFactory.h"
 
 #include "secrets/WPA.h"
+#include "WifiCommands.h"
 
 
 byte paramA, paramB, paramC;
@@ -173,7 +174,7 @@ void WifiStuff()
 
 	if (recv_bytecount > 0)
 	{
-		if (recv_buffer[0] == 0x0)
+		if (recv_buffer[0] == CMD_ON_OFF)
 		{
 			if (recv_buffer[1] == 0x0)
 			{
@@ -186,14 +187,14 @@ void WifiStuff()
 			}
 		}
 
-		if (recv_buffer[0] == 0x1)
+		if (recv_buffer[0] == CMD_SET_BRIGHTNESS)
 		{
 			FastLED.setBrightness(recv_buffer[1]);
 
 			savegame->brightness = recv_buffer[1];
 		}
 
-		if (recv_buffer[0] == 0x2)
+		if (recv_buffer[0] == CMD_SET_PROGRAM)
 		{
 			state = PROGRAM;
 
@@ -204,7 +205,7 @@ void WifiStuff()
 			FastLED.clear();
 		}
 
-		if (recv_buffer[0] == 0x3)
+		if (recv_buffer[0] == CMD_SET_COLOR_CALIBRATION)
 		{
 			FastLED.setCorrection(CRGB(recv_buffer[1], recv_buffer[2], recv_buffer[3]));
 
@@ -214,7 +215,7 @@ void WifiStuff()
 
 		}
 
-		if (recv_buffer[0] == 0x4)
+		if (recv_buffer[0] == CMD_SET_EMULATION_MODE)
 		{
 			CRGB temperature = TypicalLEDStrip;
 
@@ -361,13 +362,13 @@ void WifiStuff()
 			}
 		}
 
-		if (recv_buffer[0] == 0x80) //128
+		if (recv_buffer[0] == CMD_SAVE_TO_EEPROM) //128
 		{
 			StoreSavegame();
 			Serial.println("storing savegame...");
 		}
 
-		if (recv_buffer[0] == 0xFF) //255
+		if (recv_buffer[0] == CMD_REBOOT) //255
 		{
 			I2C_Send(nullptr, 0xff);
 			ESP.restart();

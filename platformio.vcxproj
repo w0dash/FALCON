@@ -63,6 +63,7 @@
     <ClInclude Include="src\EState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\WifiCommands.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\HW.cpp">
