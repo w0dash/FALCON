@@ -27,7 +27,7 @@ byte* i2c_req_buffer;
 
 ulong i2c_req_timer = 0;
 
-int menuPos = 0;
+int menuPos = 5;
 const int MENU_ENTRY_COUNT = 8;
 String display_string = "";
 String last_display_string = "";
@@ -41,16 +41,16 @@ bool up = false, down = false, ok = false;
 // TODO: test
 void SaveWifiConfig()
 {	
-	// ssid
-	for (int i = 0; i < sizeof(ssid); i++)
+	// WPA_SSID
+	for (int i = 0; i < sizeof(WPA_SSID); i++)
 	{
-		EEPROM.write(i, ssid[i]);
+		EEPROM.write(i, WPA_SSID[i]);
 	}
 	
-	// key
-	for (int i = 0; i < sizeof(key); i++)
+	// WPA_KEY
+	for (int i = 0; i < sizeof(WPA_KEY); i++)
 	{
-		EEPROM.write(32 + i, key[i]);
+		EEPROM.write(32 + i, WPA_KEY[i]);
 	}
 
 	EEPROM.commit();
@@ -432,7 +432,7 @@ void setup()
 
 	Serial.println("Jump wifi init");
 
-	wifi = new Wifi(ssid, key);
+	wifi = new Wifi(WPA_SSID, WPA_KEY);
 
 	I2C_Send("wifi connected", 0);
 

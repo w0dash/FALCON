@@ -1,13 +1,13 @@
 #include "Wifi.h"
 #include "HW.h"
 
-Wifi::Wifi(const char* ssid, const char* key) : server(PORT)
+Wifi::Wifi(const char* WPA_SSID, const char* WPA_KEY) : server(PORT)
 {
 	// Connect to WiFi network
 	Serial.print("\nConnecting to ");
-	Serial.println(ssid);
+	Serial.println(WPA_SSID);
 
-	WiFi.begin(ssid, key);
+	WiFi.begin(WPA_SSID, WPA_KEY);
 
 	int status = 1;
 	int x = 0;

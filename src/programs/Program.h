@@ -9,6 +9,7 @@ protected:
 	int freq = 1000;
 	unsigned long last_update_millis = 0;
 	virtual void Animate() = 0;
+	virtual void DataUpdate(char* buffer, int len) = 0;
 
 public:
 	char* id;
@@ -20,10 +21,15 @@ public:
 	virtual void DeInit() = 0;
 };
 
-inline void Program::Run()
+inline void Program::Run(char* buffer = nullptr, int len = 0)
 {
 	if(millis() > last_update_millis + 1000/freq)
 	{
+		if(buffer != nullptr)
+		{
+			this->DataUpdate(buffer, len);
+		}
+
 		this->Animate();
 		
 		last_update_millis = millis();

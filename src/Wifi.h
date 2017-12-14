@@ -12,7 +12,7 @@ class Wifi
 	WiFiUDP udp;
 
 public:
-	Wifi(const char* ssid, const char* key);
+	Wifi(const char* WPA_SSID, const char* WPA_KEY);
 	~Wifi();
 	void TcpReceive(byte recv_buffer[], int& recv_bytes);
 	void TcpSendMsg(const char* msg);
