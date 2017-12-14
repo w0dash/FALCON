@@ -9,7 +9,7 @@
 #include "ProgramFactory.h"
 
 #include "secrets/WPA.h"
-#include "WifiCommands.h"
+#include "protocol/WifiCommands.h"
 
 int8_t paramA, paramB, paramC;
 

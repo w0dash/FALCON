@@ -23,10 +23,10 @@
     <ClInclude Include="src\secrets\WPA.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\WifiCommands.h">
+    <ClInclude Include="src\protocol\FalconProtoHeader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\FalconProtoHeader.h">
+    <ClInclude Include="src\protocol\WifiCommands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
