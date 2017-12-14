@@ -62,7 +62,7 @@ Wifi::~Wifi()
 {
 }
 
-void Wifi::TcpReceive(uint8_t recv_buffer[], int& recv_uint8_ts)
+void Wifi::TcpReceive(uint8_t recv_buffer[], int& recv_buffer)
 {
 	//network
 	// Check if a client has connected
@@ -98,18 +98,18 @@ void Wifi::TcpReceive(uint8_t recv_buffer[], int& recv_uint8_ts)
 
 	if (client)
 	{
-		recv_uint8_ts = client.available();
+		recv_buffer = client.available();
 
-		if (recv_uint8_ts > 0)
+		if (recv_buffer > 0)
 		{
-			for (int i = 0; i < recv_uint8_ts; i++)
+			for (int i = 0; i < recv_buffer; i++)
 			{
 				recv_buffer[i] = client.read();
 			}
 
 			Serial.print("msg:");
 
-			for (int i = 0; i < recv_uint8_ts; i++)
+			for (int i = 0; i < recv_buffer; i++)
 			{
 				Serial.print(" ");
 				Serial.print(recv_buffer[i]);

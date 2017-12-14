@@ -14,7 +14,7 @@ class Wifi
 public:
 	Wifi(const char* WPA_SSID, const char* WPA_KEY);
 	~Wifi();
-	void TcpReceive(uint8_t recv_buffer[], int& recv_uint8_ts);
+	void TcpReceive(uint8_t recv_buffer[], int& recv_buffer);
 	void TcpSendMsg(const char* msg);
 	void UdpDiscovery();
 };

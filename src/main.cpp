@@ -167,10 +167,10 @@ void WifiStuff()
 {
 	wifi->UdpDiscovery();
 
-	int recv_uint8_tcount;
-	wifi->TcpReceive(recv_buffer, recv_uint8_tcount);
+	int recv_bytecount;
+	wifi->TcpReceive(recv_buffer, recv_bytecount);
 
-	if (recv_uint8_tcount > 0)
+	if (recv_bytecount > 0)
 	{
 		if (recv_buffer[0] == CMD_ON_OFF)
 		{
