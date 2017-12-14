@@ -6,7 +6,7 @@ Beatwave::Beatwave()
 	tooltip = "a weird pulsating wave";
 }
 
-void Beatwave::Init(byte param_values[3])
+void Beatwave::Init(uint8_t param_values[3])
 {
 	currentPalette = RainbowColors_p;
 	currentBlending = LINEARBLEND;

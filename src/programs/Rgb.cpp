@@ -21,7 +21,7 @@ Rgb::Rgb()
 	parameters[2].max = 255;
 }
 
-void Rgb::Init(byte param_values[3])
+void Rgb::Init(uint8_t param_values[3])
 {
 	if(param_values != nullptr)
 	{

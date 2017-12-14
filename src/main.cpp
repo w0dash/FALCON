@@ -11,7 +11,7 @@
 #include "secrets/WPA.h"
 #include "WifiCommands.h"
 
-byte paramA, paramB, paramC;
+int8_t paramA, paramB, paramC;
 
 State state = PROGRAM;
 State previousState;
@@ -21,9 +21,9 @@ Savegame* savegame;
 
 Wifi* wifi;
 
-byte* recv_buffer;
+int8_t* recv_buffer;
 
-byte* i2c_req_buffer;
+int8_t* i2c_req_buffer;
 
 ulong i2c_req_timer = 0;
 
@@ -71,7 +71,7 @@ extern void I2C_Send(const char* msg, uint8_t extra)
 	Wire.endTransmission();
 }
 
-void SelectProgram(byte num, byte params[3])
+void SelectProgram(int8_t num, int8_t params[3])
 {
 	FastLED.clear();
 
@@ -111,23 +111,23 @@ void StoreSavegame()
 	EEPROM.put(0, *savegame);
 
 	/*
-	byte* data = (byte*)savegame;
+	uint8_t* data = (uint8_t*)savegame;
 	for (int i = 0; i < sizeof(*savegame); i++)
 	{
 		EEPROM.write(i, data[i]);
 	}
 	*/
 
-	// overwrite last byte with brightness; subject to change
+	// overwrite last uint8_t with brightness; subject to change
 	EEPROM.write(7, FastLED.getBrightness());
 
 	EEPROM.commit();
 	EEPROM.end();
 }
 
-void GetSavegameRAW(byte* buffer)
+void GetSavegameRAW(uint8_t* buffer)
 {
-	byte* data = (byte*)savegame;
+	uint8_t* data = (uint8_t*)savegame;
 	for (int i = 0; i < sizeof(*savegame); i++)
 	{
 		buffer[i] = data[i];
@@ -140,20 +140,20 @@ void LoadSavegame()
 	EEPROM.get(0, *savegame);
 	EEPROM.end();
 
-	byte bytes[8];
-	GetSavegameRAW(bytes);
+	uint8_t uint8_ts[8];
+	GetSavegameRAW(uint8_ts);
 
 	Serial.print("*savegame [eeprom  0-7]: ");
-	for (int i = 0; i < sizeof(bytes); i++)
+	for (int i = 0; i < sizeof(uint8_ts); i++)
 	{
-		Serial.print((byte)bytes[i]);
+		Serial.print((uint8_t)uint8_ts[i]);
 		Serial.print(" ");
 	}
 	Serial.println();
 
 	Serial.println("Trying to select program");
 
-	byte params[] = { savegame->prog_param1, savegame->prog_param2, savegame->prog_param3 };
+	uint8_t params[] = { savegame->prog_param1, savegame->prog_param2, savegame->prog_param3 };
 	SelectProgram(savegame->prog_num, params);
 
 	Serial.println("Trying to set brightness");
@@ -167,10 +167,10 @@ void WifiStuff()
 {
 	wifi->UdpDiscovery();
 
-	int recv_bytecount;
-	wifi->TcpReceive(recv_buffer, recv_bytecount);
+	int recv_uint8_tcount;
+	wifi->TcpReceive(recv_buffer, recv_uint8_tcount);
 
-	if (recv_bytecount > 0)
+	if (recv_uint8_tcount > 0)
 	{
 		if (recv_buffer[0] == CMD_ON_OFF)
 		{
@@ -196,7 +196,7 @@ void WifiStuff()
 		{
 			state = PROGRAM;
 
-			byte params[3] = {recv_buffer[2], recv_buffer[3], recv_buffer[4]};
+			uint8_t params[3] = {recv_buffer[2], recv_buffer[3], recv_buffer[4]};
 
 			SelectProgram(recv_buffer[1], params);
 
@@ -311,7 +311,7 @@ void WifiStuff()
 
 			int progCount = ProgramFactory::GetProgramCount();
 
-			byte dummyParams[3];
+			uint8_t dummyParams[3];
 
 			for (int i = 0; i < progCount; i++)
 			{
@@ -376,7 +376,7 @@ void WifiStuff()
 
 void EEPROM_TestWrite()
 {
-	byte putput[] = {
+	uint8_t putput[] = {
 		0x1, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF
 	};
 
@@ -436,9 +436,9 @@ void setup()
 
 	I2C_Send("wifi connected", 0);
 
-	recv_buffer = new byte[RECV_BUFFER_SIZE];
+	recv_buffer = new uint8_t[RECV_BUFFER_SIZE];
 
-	i2c_req_buffer = new byte[3];
+	i2c_req_buffer = new uint8_t[3];
 
 	Serial.println("- init done -");
 	Serial.println();

@@ -6,7 +6,7 @@ Rainbow::Rainbow()
 	tooltip = "a rainbow";
 }
 
-void Rainbow::Init(byte param_values[3])
+void Rainbow::Init(uint8_t param_values[3])
 {
 
 }

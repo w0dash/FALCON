@@ -9,7 +9,7 @@ private:
 
 public:
 	Rgb();
-	void Init(byte params[3]);
+	void Init(uint8_t params[3]);
 	void Animate();
 	void DeInit();
 	virtual ~Rgb();

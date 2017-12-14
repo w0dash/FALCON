@@ -11,7 +11,7 @@ SoftTwinkle::SoftTwinkle()
 	parameters[0].max = 255;
 }
 
-void SoftTwinkle::Init(byte param_values[3])
+void SoftTwinkle::Init(uint8_t param_values[3])
 {
 	freq = 50;
 

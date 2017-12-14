@@ -62,7 +62,7 @@ Wifi::~Wifi()
 {
 }
 
-void Wifi::TcpReceive(byte recv_buffer[], int& recv_bytes)
+void Wifi::TcpReceive(uint8_t recv_buffer[], int& recv_uint8_ts)
 {
 	//network
 	// Check if a client has connected
@@ -98,18 +98,18 @@ void Wifi::TcpReceive(byte recv_buffer[], int& recv_bytes)
 
 	if (client)
 	{
-		recv_bytes = client.available();
+		recv_uint8_ts = client.available();
 
-		if (recv_bytes > 0)
+		if (recv_uint8_ts > 0)
 		{
-			for (int i = 0; i < recv_bytes; i++)
+			for (int i = 0; i < recv_uint8_ts; i++)
 			{
 				recv_buffer[i] = client.read();
 			}
 
 			Serial.print("msg:");
 
-			for (int i = 0; i < recv_bytes; i++)
+			for (int i = 0; i < recv_uint8_ts; i++)
 			{
 				Serial.print(" ");
 				Serial.print(recv_buffer[i]);
@@ -151,7 +151,7 @@ void Wifi::UdpDiscovery()
 	if (buffersize > 0)
 	{
 		String msg = "";
-		byte buffer[buffersize];
+		uint8_t buffer[buffersize];
 		for (int i = 0; i < buffersize; i++)
 		{
 			buffer[i] = udp.read();

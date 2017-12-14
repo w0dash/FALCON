@@ -82,7 +82,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Parameter.cpp" />
     <ClCompile Include="src\ProgramFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

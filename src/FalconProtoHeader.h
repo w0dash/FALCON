@@ -1,19 +1,21 @@
 ﻿#pragma once
 
+#include <stdint.h>
+
 typedef struct FalconProtoHeader
 {
-	unsigned char Direction;
-	unsigned char Type;
-	unsigned char ID;
-	unsigned short PayloadLength;
+	uint8_t Direction;
+	uint8_t Type;
+	uint8_t ID;
+	uint16_t PayloadLength;
 } FalconProtoHeader;
 
-enum FalconProtoHeaderDirection : unsigned char
+enum FalconProtoHeaderDirection : uint8_t
 {
 	Firmware, CurrentProgram
 };
 
-enum FalconProtoHeaderType : unsigned char
+enum FalconProtoHeaderType : uint8_t
 {
 	Command, RawData
 };

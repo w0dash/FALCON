@@ -6,7 +6,7 @@ Sinelon::Sinelon()
 	tooltip = "who the fuck is sinelon";
 }
 
-void Sinelon::Init(byte param_values[3])
+void Sinelon::Init(uint8_t param_values[3])
 {
 
 }
